@@ -2,8 +2,34 @@
 <html lang="zh-hk" xmlns="https://www.w3.org/1999/xhtml>">
     <head>
         <title>Sharebook Server</title>
+        <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
     </head>
     <body>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyCeCSjeZKre0HPn3Xy21bdq4qskN1PlKjg",
+                authDomain: "server-e9314.firebaseapp.com",
+                projectId: "server-e9314",
+                storageBucket: "server-e9314.appspot.com",
+                messagingSenderId: "728817460994",
+                appId: "1:728817460994:web:e0cb1f3b5720726d03041b"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
         <script>
             function UrlSearch() {
                 var name, value;
