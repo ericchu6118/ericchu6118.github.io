@@ -1,12 +1,17 @@
 * {
+    margin: 0px;
+    padding: 0px;
     font-family: 'Noto Serif HK';
 }
 
 body {
+    height: 100dvh;
     margin: 0px;
     padding: 0px;
-    height: 100vh;
-    font-family: 'Noto Serif HK';
+}
+
+.pseudo-body {
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -15,12 +20,39 @@ body {
     gap: 20px;
 }
 
+.mahjong-table {
+    border: 10px solid #ffebcf;
+    border-radius: 5px;
+    height: 50dvw;
+    width: 50dvw;
+    font-size: 20dvw;
+    background-color: #006638;
+    color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
 button {
-    border: 0px;
     border-radius: 5px;
     width: 200px;
-    height: 50px;   
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
     font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         cursor: pointer;
@@ -29,5 +61,39 @@ button {
     &.pri {
         background-color: #006638;
         color: #ffffff;
+        border: 0px;
     }
+
+    &.sec {
+        background-color: transparent;
+        color: #000000;
+        border: 2px solid #006638;
+    }
+
+    &.navbar {
+        width: min(40dvw, 144px);
+        height: 36px;
+        font-size: 18px;
+        background-color: #006638;
+        color: #ffffff;
+        border: 0px;
+
+        margin-left: auto;
+    }
+}
+
+svg.logo {
+    width: 40px;
+    height: 50px;
+}
+
+nav {
+    position: absolute;
+    width: 95dvw;
+    padding: 5px 2.5dvw 5px 2.5dvw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
 }
