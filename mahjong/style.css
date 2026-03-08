@@ -1,3 +1,33 @@
-body {
+* {
     font-family: 'Noto Serif HK';
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    font-family: 'Noto Serif HK';
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    border: 0px;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;   
+    font-size: 24px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.pri {
+        background-color: #006638;
+        color: #ffffff;
+    }
 }
