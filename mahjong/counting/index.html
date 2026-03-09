@@ -10,8 +10,8 @@
         <title>Mahjong Counting</title>
     </head>
     <body>
-        <nav>
-            <a href="../" style="line-height: 0px;">
+        <nav class="hori">
+            <a href="../">
                 <svg class="logo" width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1_8)">
                         <path d="M110 1H10C5.02944 1 1 5.02944 1 10V140C1 144.971 5.02944 149 10 149H110C114.971 149 119 144.971 119 140V10C119 5.02944 114.971 1 110 1Z" fill="white" stroke="black" stroke-width="2"/>
@@ -25,12 +25,56 @@
                 </svg>
             </a>
             <h2>計錢</h2>          
-            <button class="navbar">開新枱</button>
+            <button id="clearBtn" class="pri navbar">開新枱</button>
         </nav>
-        <div class="pseudo-body">
-            <div class="mahjong-table">東</div>
-            <button class="pri">食糊</button>
-            <button class="sec">結算</button>
+        <div class="pseudo-body vert">
+            <div class="vert" style="gap: 5px;">
+                    <p class="name">西</p>
+                    <p class="point">100</p>
+            </div>
+            <div class="hori">
+                <div class="vert" style="gap: 5px;">
+                    <p class="name">南</p>
+                    <p class="point">100</p>
+                </div>
+                <div id="mahjongTable">東</div>
+                <div class="vert" style="gap: 5px;">
+                    <p class="name">北</p>
+                    <p class="point">100</p>
+                </div>
+            </div>
+            <div class="vert" style="gap: 5px;">
+                    <p class="name">東</p>
+                    <p class="point">100</p>
+            </div>
+            <div id="inputs" class="vert">
+                <div class="hori">
+                    <p>東</p>
+                    <input type="text" placeholder="入名">
+                </div>
+                <div class="hori">
+                    <p>南</p>
+                    <input type="text" placeholder="入名">
+                </div>
+                <div class="hori">
+                    <p>西</p>
+                    <input type="text" placeholder="入名">
+                </div>
+                <div class="hori">
+                    <p>北</p>
+                    <input type="text" placeholder="入名">
+                </div>
+                <div class="hori">
+                    <button id="nameBtn" class="pri navbar">搞掂</button>
+                    <button id="changeWindBtn" class="sec navbar">轉風位</button>
+                </div>
+            </div>
+            <div id="btns" class="vert">
+                <button class="pri">食糊</button>
+                <button class="sec">結算</button>
+            </div>
         </div>
+        
+        <script src="./script.js"></script>
     </body>
 </html>
