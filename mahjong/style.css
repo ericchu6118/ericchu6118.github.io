@@ -92,9 +92,7 @@ button {
         border: 1px solid #006638;
 
         &:hover {
-            background-color: #006638;
-            color: #ffffff;
-            border: 0px;
+            color: #006638;
         }
     }
 
@@ -122,6 +120,7 @@ input {
     border-width: 0px 0px 1px 0px;
     border-style: solid;
     border-color: #000000;
+    border-radius: 0px;
     outline: 0px;
     height: 36px;
     width: 70dvw;
@@ -132,5 +131,9 @@ input {
         border-width: 0px 0px 1px 0px;
         border-style: solid;
         border-color: #006638;
+    }
+
+    &:invalid {
+        border-color: #66002e;
     }
 }
