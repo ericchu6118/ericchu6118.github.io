@@ -1,4 +1,5 @@
 const wind = document.getElementById("mahjongTable");
+const directions = document.getElementsByClassName("directions");
 const players = document.getElementsByClassName("name");
 const points = document.getElementsByClassName("point");
 const inputs = document.getElementById("inputs");
@@ -16,12 +17,15 @@ let windNum = 0;
 let roundNum = 0;
 let initNum = 0;
 let playerNames = ["", "", "", ""];
+let pointsStarting = 1;
 let pointsNum = [100, 100, 100, 100]; //In HTML order (3,2,4,1)
-let given = false;
-let ps = 1; //Points starting point
 
-const directions = ["東", "南", "西", "北"]
-const pointsTable = [ps, ps*2, ps*4, ps*8, ps*16, ps*24, ps*32, ps*48, ps*64, ps*96, ps*128]
+let given = false;
+let givenFrom = 0;
+let givenTo = 0;
+
+const directionsName = ["東", "南", "西", "北"]
+const pointsTable = [1, 2, 4, 8, 16, 24, 32, 48, 64, 96, 128].map((value) => {value * pointsStarting})
 
 function storeData(windNum, roundNum, initNum, playerNames, pointsNum) {
     localStorage.setItem("windNum", windNum);
@@ -38,7 +42,7 @@ function showSection (num) {
             nameBtn.style.display = "";
             changeWindBtn.style.display = "";
             btns.style.display = "none";
-            Array.from(points).map((i) => {i.style.display = "none"})
+            Array.from(points).map((i) => i.style.display = "none")
             eatBtns.style.display = "none";
             break;
         case 1:
@@ -46,7 +50,7 @@ function showSection (num) {
             nameBtn.style.display = "none";
             changeWindBtn.style.display = "none";
             btns.style.display = "";
-            Array.from(points).map((i) => {i.style.display = ""})
+            Array.from(points).map((i) => i.style.display = "")
             eatBtns.style.display = "none";
             break;
         case 2:
@@ -54,7 +58,7 @@ function showSection (num) {
             nameBtn.style.display = "none";
             changeWindBtn.style.display = "none";
             btns.style.display = "none";
-            Array.from(points).map((i) => {i.style.display = ""})
+            Array.from(points).map((i) => i.style.display = "")
             eatBtns.style.display = "";
             break;
     }
@@ -72,9 +76,11 @@ function clearTable () {
 function renderTable () {
     storeData(windNum, roundNum, initNum, playerNames, pointsNum)
 
-    wind.textContent = directions[windNum];
+    wind.textContent = directionsName[windNum];
     for (let i = 0; i < 4; i++) {
-        Array.from(players)[i].textContent = directions[[2, 1, 3, 0].map((i) => (i + initNum + roundNum) % 4)[i]] + " " + playerNames[[2, 1, 3, 0].map((i) => (i + roundNum) % 4)[i]];
+        directions[i].textContent = directionsName[[2, 1, 3, 0].map((i) => (i + initNum + roundNum) % 4)[i]]
+        players[i].textContent = playerNames[[2, 1, 3, 0].map((i) => (i + roundNum) % 4)[i]];
+        document.getElementById("tableColumn").style.transform="translateX("+(players[2].offsetWidth/2-players[1].offsetWidth/2)+"px)"
     }
 }
 

@@ -54,6 +54,7 @@ h2 {
 
 p {
     font-size: 18px;
+    text-align: center;
 }
 
 a {
@@ -96,12 +97,18 @@ button {
         }
     }
 
-    &.navbar {
+    &.smaller {
         width: 108px;
         height: 36px;
         font-size: 18px;
 
         margin-left: auto;
+    }
+
+    &.smallest {
+        width: 44px;
+        height: 36px;
+        font-size: 18px;
     }
 }
 
@@ -123,7 +130,7 @@ input {
     border-radius: 0px;
     outline: 0px;
     height: 36px;
-    width: 70dvw;
+    width: 236px; /* To match with buttons */
     font-size: 18px;
     transition-duration: 0.2s;
 

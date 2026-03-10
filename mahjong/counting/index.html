@@ -25,48 +25,52 @@
                 </svg>
             </a>
             <h2>計錢</h2>          
-            <button id="clearBtn" class="pri navbar">開新枱</button>
+            <button id="clearBtn" class="pri smaller">開新枱</button>
         </nav>
         <div class="pseudo-body vert">
             <div class="vert" style="gap: 5px;">
-                    <p class="name">西</p>
+                    <p class="directions">西</p>
+                    <p class="name">玩家3</p>
                     <p class="point">100</p>
             </div>
-            <div class="hori">
+            <div id="tableColumn" class="hori">
                 <div class="vert" style="gap: 5px;">
-                    <p class="name">南</p>
+                    <p class="directions">南</p>
+                    <p class="name">玩家2</p>
                     <p class="point">100</p>
                 </div>
                 <div id="mahjongTable">東</div>
                 <div class="vert" style="gap: 5px;">
-                    <p class="name">北</p>
+                    <p class="directions">北</p>
+                    <p class="name">玩家4</p>
                     <p class="point">100</p>
                 </div>
             </div>
             <div class="vert" style="gap: 5px;">
-                    <p class="name">東</p>
+                    <p class="directions">東</p>
+                    <p class="name">玩家1</p>
                     <p class="point">100</p>
             </div>
             <div id="inputs" class="vert">
                 <div class="hori">
                     <p>東</p>
-                    <input type="text" placeholder="入名">
+                    <input type="text" maxlength="7" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>南</p>
-                    <input type="text" placeholder="入名">
+                    <input type="text" maxlength="7" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>西</p>
-                    <input type="text" placeholder="入名">
+                    <input type="text" maxlength="7" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>北</p>
-                    <input type="text" placeholder="入名">
+                    <input type="text" maxlength="7" placeholder="入名">
                 </div>
                 <div class="hori">
-                    <button id="nameBtn" class="pri navbar">搞掂</button>
-                    <button id="changeWindBtn" class="sec navbar">轉風位</button>
+                    <button id="nameBtn" class="pri smaller">搞掂</button>
+                    <button id="changeWindBtn" class="sec smaller">轉風位</button>
                 </div>
             </div>
 
@@ -76,10 +80,16 @@
             </div>
 
             <div id="eatBtns" class="vert">
+                <div class="hori">
+                    <button class="pri smallest selBtns">東</button>
+                    <button class="sec smallest selBtns">南</button>
+                    <button class="sec smallest selBtns">西</button>
+                    <button class="sec smallest selBtns">北</button>
+                </div>
                 <input type="number" placeholder="番數" min="3" max="10">
                 <div class="hori">
-                    <button id="givenBtn" class="sec navbar selBtns">出銃</button>
-                    <button id="gottenBtn" class="pri navbar selBtns">自摸</button>
+                    <button id="givenBtn" class="sec smaller selBtns">出銃</button>
+                    <button id="gottenBtn" class="pri smaller selBtns">自摸</button>
                 </div>
             </div>
         </div>
