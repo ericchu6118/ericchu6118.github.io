@@ -26,6 +26,15 @@ body {
     gap: 20px;
 }
 
+.float {
+    border: 1px solid #006638;
+    border-radius: 5px;
+    height: 200px;
+    width: 80dvw;
+    background-color: #ffffff;
+    position: absolute;
+}
+
 .pseudo-body {
     height: 100%;
 }
@@ -97,12 +106,16 @@ button {
         }
     }
 
+    &.disabled {
+        background-color: #969696;
+        color: #C6C6C6;
+        border: 0px;
+    }
+
     &.smaller {
         width: 108px;
         height: 36px;
         font-size: 18px;
-
-        margin-left: auto;
     }
 
     &.smallest {
@@ -133,6 +146,10 @@ input {
     width: 236px; /* To match with buttons */
     font-size: 18px;
     transition-duration: 0.2s;
+
+    &::placeholder {
+        color: #C6C6C6;
+    }
 
     &:focus {
         border-width: 0px 0px 1px 0px;

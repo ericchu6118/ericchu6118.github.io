@@ -1,17 +1,25 @@
 const wind = document.getElementById("mahjongTable");
 const directions = document.getElementsByClassName("directions");
 const players = document.getElementsByClassName("name");
+const playersBox = document.getElementsByClassName("players")
 const points = document.getElementsByClassName("point");
+const pointChange = document.getElementsByClassName("pointChange");
 const inputs = document.getElementById("inputs");
 const nameBtn = document.getElementById("nameBtn");
 const changeWindBtn = document.getElementById("changeWindBtn")
 const btns = document.getElementById("btns");
 const clearBtn = document.getElementById("clearBtn");
-const eatBtn = document.getElementById("eatBtn");
 const eatBtns = document.getElementById("eatBtns");
 const selBtns = document.getElementsByClassName("selBtns");
 const givenBtn = document.getElementById("givenBtn");
 const gottenBtn = document.getElementById("gottenBtn");
+const dirBtns1 = document.getElementsByClassName("dirBtns1");
+const dirBtns2 = document.getElementsByClassName("dirBtns2");
+const eatBtn = document.getElementById("eatBtn");
+const backBtn = document.getElementById("backBtn");
+const alertBox = document.getElementById("alertBox");
+const alertTxt = document.getElementById("alert");
+const alertBtn = document.getElementById("alertBtn")
 
 let windNum = 0;
 let roundNum = 0;
@@ -27,7 +35,7 @@ let givenTo = 0;
 const directionsName = ["東", "南", "西", "北"]
 const pointsTable = [1, 2, 4, 8, 16, 24, 32, 48, 64, 96, 128].map((value) => {value * pointsStarting})
 
-function storeData(windNum, roundNum, initNum, playerNames, pointsNum) {
+function storeData() {
     localStorage.setItem("windNum", windNum);
     localStorage.setItem("roundNum", roundNum);
     localStorage.setItem("initNum", initNum);
@@ -42,7 +50,8 @@ function showSection (num) {
             nameBtn.style.display = "";
             changeWindBtn.style.display = "";
             btns.style.display = "none";
-            Array.from(points).map((i) => i.style.display = "none")
+            Array.from(points).map((i) => i.style.display = "none");
+            Array.from(pointChange).map((i) => i.style.display = "none");
             eatBtns.style.display = "none";
             break;
         case 1:
@@ -50,7 +59,8 @@ function showSection (num) {
             nameBtn.style.display = "none";
             changeWindBtn.style.display = "none";
             btns.style.display = "";
-            Array.from(points).map((i) => i.style.display = "")
+            Array.from(points).map((i) => i.style.display = "");
+            Array.from(pointChange).map((i) => i.style.display = "none");
             eatBtns.style.display = "none";
             break;
         case 2:
@@ -58,11 +68,19 @@ function showSection (num) {
             nameBtn.style.display = "none";
             changeWindBtn.style.display = "none";
             btns.style.display = "none";
-            Array.from(points).map((i) => i.style.display = "")
+            Array.from(points).map((i) => i.style.display = "none");
+            Array.from(pointChange).map((i) => i.style.display = "");
             eatBtns.style.display = "";
             break;
     }
+    renderTable();
 }
+
+function toggleAlert (text = "") {
+    text?alertBox.style.display="":alertBox.style.display="none";
+    alertTxt.textContent = text;
+}
+toggleAlert();
 
 function clearTable () {
     localStorage.clear();
@@ -74,13 +92,12 @@ function clearTable () {
 }
 
 function renderTable () {
-    storeData(windNum, roundNum, initNum, playerNames, pointsNum)
-
     wind.textContent = directionsName[windNum];
     for (let i = 0; i < 4; i++) {
         directions[i].textContent = directionsName[[2, 1, 3, 0].map((i) => (i + initNum + roundNum) % 4)[i]]
         players[i].textContent = playerNames[[2, 1, 3, 0].map((i) => (i + roundNum) % 4)[i]];
-        document.getElementById("tableColumn").style.transform="translateX("+(players[2].offsetWidth/2-players[1].offsetWidth/2)+"px)"
+        points[i].textContent = pointsNum[[2, 1, 3, 0].map((i) => (i + roundNum) % 4)[i]];
+        document.getElementById("tableColumn").style.transform="translateX("+(playersBox[2].offsetWidth/2-playersBox[1].offsetWidth/2)+"px)"
     }
 }
 
@@ -91,10 +108,9 @@ function changeTable () {
     }
 }
 
-if(!localStorage.getItem("windNum")) {
+if (!localStorage.getItem("windNum")) {
     clearTable();
     showSection(0);
-    renderTable();
 } else {
     windNum = parseInt(localStorage.getItem("windNum"));
     roundNum = parseInt(localStorage.getItem("roundNum"));
@@ -105,14 +121,24 @@ if(!localStorage.getItem("windNum")) {
     renderTable();
 }
 
+alertBtn.addEventListener("click", () => {
+    toggleAlert();
+});
+
 nameBtn.addEventListener("click", () => {
     playerNames = Array.from(inputs.getElementsByTagName("input")).map((input) => input.value);
-    showSection(1);
-    renderTable();
+    if (playerNames.includes("")) {
+        toggleAlert("名唔可以空")
+    } else {
+        showSection(1);
+        storeData();
+        renderTable();
+    }
 });
 
 changeWindBtn.addEventListener("click", () => {
     initNum += 1;
+    storeData();
     renderTable();
 });
 
@@ -122,7 +148,7 @@ clearBtn.addEventListener("click", () => {
     renderTable();
 });
 
-eatBtn.addEventListener("click", () => {
+gottenBtn.addEventListener("click", () => {
     showSection(2);
 });
 
@@ -134,13 +160,47 @@ Array.from(selBtns).map((i) => {
 });
 
 givenBtn.addEventListener("click", () => {
-    given = !given;
-    gottenBtn.classList.toggle("pri");
-    gottenBtn.classList.toggle("sec");
+    given = true;
+    showSection(2);
 });
 
 gottenBtn.addEventListener("click", () => {
-    given = !given;
-    givenBtn.classList.toggle("pri");
-    givenBtn.classList.toggle("sec");
+    given = false;
+    showSection(2);
+});
+
+Array.from(dirBtns1).map((dirBtn, index) => {
+    dirBtn.addEventListener("click", () => {
+        if (index == givenFrom) {
+            givenFrom = -1;
+        } else {
+            if (givenFrom != -1) {
+                dirBtns1[givenFrom].classList.toggle("pri");
+                dirBtns1[givenFrom].classList.toggle("sec");
+            }
+            givenFrom = index;
+        }
+    });
+});
+
+Array.from(dirBtns2).map((dirBtn, index) => {
+    dirBtn.addEventListener("click", () => {
+        if (index == givenTo) {
+            givenTo = -1;
+        } else {
+            if (givenTo != -1) {
+                dirBtns2[givenTo].classList.toggle("pri");
+                dirBtns2[givenTo].classList.toggle("sec");
+            }
+            givenTo = index;
+        }
+    });
+});
+
+backBtn.addEventListener("click", () => {
+    showSection(1);
+});
+
+eatBtn.addEventListener("click", () => {
+    
 });

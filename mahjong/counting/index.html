@@ -23,50 +23,66 @@
                         </clipPath>
                     </defs>
                 </svg>
-            </a>
-            <h2>計錢</h2>          
-            <button id="clearBtn" class="pri smaller">開新枱</button>
+            </a>     
+            <button id="clearBtn" class="pri smaller" style="margin-left: auto;">開新枱</button>
+            <button class="sec smaller">結算</button>
         </nav>
         <div class="pseudo-body vert">
-            <div class="vert" style="gap: 5px;">
+            <div class="vert players" style="gap: 5px;">
+                <div class="hori" style="gap: 5px;">
                     <p class="directions">西</p>
-                    <p class="name">玩家3</p>
-                    <p class="point">100</p>
+                    <p class="name"></p>
+                </div>
+                <div class="hori">
+                    <p class="point"></p>
+                    <p class="pointChange">+0</p>
+                </div>
             </div>
             <div id="tableColumn" class="hori">
-                <div class="vert" style="gap: 5px;">
+                <div class="vert players" style="gap: 5px;">
                     <p class="directions">南</p>
-                    <p class="name">玩家2</p>
-                    <p class="point">100</p>
+                    <p class="name"></p>
+                    <div class="hori">
+                        <p class="point"></p>
+                        <p class="pointChange">+0</p>
+                    </div>
                 </div>
                 <div id="mahjongTable">東</div>
-                <div class="vert" style="gap: 5px;">
+                <div class="vert players" style="gap: 5px;">
                     <p class="directions">北</p>
-                    <p class="name">玩家4</p>
-                    <p class="point">100</p>
+                    <p class="name"></p>
+                    <div class="hori">
+                        <p class="point"></p>
+                        <p class="pointChange">+0</p>
+                    </div>
                 </div>
             </div>
-            <div class="vert" style="gap: 5px;">
+            <div class="vert players" style="gap: 5px;">
+                <div class="hori" style="gap: 5px;">
                     <p class="directions">東</p>
-                    <p class="name">玩家1</p>
-                    <p class="point">100</p>
+                    <p class="name"></p>
+                </div>
+                <div class="hori">
+                    <p class="point"></p>
+                    <p class="pointChange">+0</p>
+                </div>
             </div>
             <div id="inputs" class="vert">
                 <div class="hori">
                     <p>東</p>
-                    <input type="text" maxlength="7" placeholder="入名">
+                    <input type="text" maxlength="6" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>南</p>
-                    <input type="text" maxlength="7" placeholder="入名">
+                    <input type="text" maxlength="6" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>西</p>
-                    <input type="text" maxlength="7" placeholder="入名">
+                    <input type="text" maxlength="6" placeholder="入名">
                 </div>
                 <div class="hori">
                     <p>北</p>
-                    <input type="text" maxlength="7" placeholder="入名">
+                    <input type="text" maxlength="6" placeholder="入名">
                 </div>
                 <div class="hori">
                     <button id="nameBtn" class="pri smaller">搞掂</button>
@@ -75,22 +91,39 @@
             </div>
 
             <div id="btns" class="vert">
-                <button id="eatBtn" class="pri">食糊</button>
-                <button class="sec">結算</button>
+                <button id="gottenBtn" class="pri">自摸</button>
+                <button id="givenBtn" class="sec">出銃</button>
             </div>
 
             <div id="eatBtns" class="vert">
-                <div class="hori">
-                    <button class="pri smallest selBtns">東</button>
-                    <button class="sec smallest selBtns">南</button>
-                    <button class="sec smallest selBtns">西</button>
-                    <button class="sec smallest selBtns">北</button>
+                <div id="dirBtn1" class="hori">
+                    <p>出銃</p>
+                    <button class="pri smallest selBtns dirBtns1">東</button>
+                    <button class="sec smallest selBtns dirBtns1">南</button>
+                    <button class="sec smallest selBtns dirBtns1">西</button>
+                    <button class="sec smallest selBtns dirBtns1">北</button>
                 </div>
-                <input type="number" placeholder="番數" min="3" max="10">
-                <div class="hori">
-                    <button id="givenBtn" class="sec smaller selBtns">出銃</button>
-                    <button id="gottenBtn" class="pri smaller selBtns">自摸</button>
+                <div id="dirBtn2" class="hori">
+                    <p>食糊</p>
+                    <button class="pri smallest selBtns dirBtns2">東</button>
+                    <button class="sec smallest selBtns dirBtns2">南</button>
+                    <button class="sec smallest selBtns dirBtns2">西</button>
+                    <button class="sec smallest selBtns dirBtns2">北</button>
                 </div>
+                <div class="hori">
+                    <p>入番</p>
+                    <input type="number" placeholder="番數" min="3" max="10">
+                </div>
+                <div class="hori">
+                    <button id="eatBtn" class="pri smaller">搞掂</button>
+                    <button id="backBtn" class="sec smaller">翻轉頭</button>
+                </div>
+            </div>
+
+            <div id="alertBox" class="float vert">
+                <h2>提醒</h2>
+                <p id="alert">提醒下你</p>
+                <button id="alertBtn" class="pri smaller">OK</button>
             </div>
         </div>
         
