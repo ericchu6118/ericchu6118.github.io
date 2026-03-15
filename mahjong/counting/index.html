@@ -28,45 +28,48 @@
             <button class="sec smaller">結算</button>
         </nav>
         <div class="pseudo-body vert">
-            <div class="vert players" style="gap: 5px;">
-                <div class="hori" style="gap: 5px;">
-                    <p class="directions">西</p>
-                    <p class="name"></p>
-                </div>
-                <div class="hori">
-                    <p class="point"></p>
-                    <p class="pointChange">+0</p>
-                </div>
-            </div>
-            <div id="tableColumn" class="hori">
+            <div id="wholeTable" class="vert">
                 <div class="vert players" style="gap: 5px;">
-                    <p class="directions">南</p>
-                    <p class="name"></p>
+                    <div class="hori" style="gap: 5px;">
+                        <p class="directions">西</p>
+                        <p class="name"></p>
+                    </div>
                     <div class="hori">
                         <p class="point"></p>
                         <p class="pointChange">+0</p>
                     </div>
                 </div>
-                <div id="mahjongTable">東</div>
+                <div id="tableColumn" class="hori">
+                    <div class="vert players" style="gap: 5px;">
+                        <p class="directions">北</p>
+                        <p class="name"></p>
+                        <div class="hori">
+                            <p class="point"></p>
+                            <p class="pointChange">+0</p>
+                        </div>
+                    </div>
+                    <div id="mahjongTable">東</div>
+                    <div class="vert players" style="gap: 5px;">
+                        <p class="directions">南</p>
+                        <p class="name"></p>
+                        <div class="hori">
+                            <p class="point"></p>
+                            <p class="pointChange">+0</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="vert players" style="gap: 5px;">
-                    <p class="directions">北</p>
-                    <p class="name"></p>
+                    <div class="hori" style="gap: 5px;">
+                        <p class="directions">東</p>
+                        <p class="name"></p>
+                    </div>
                     <div class="hori">
                         <p class="point"></p>
                         <p class="pointChange">+0</p>
                     </div>
                 </div>
             </div>
-            <div class="vert players" style="gap: 5px;">
-                <div class="hori" style="gap: 5px;">
-                    <p class="directions">東</p>
-                    <p class="name"></p>
-                </div>
-                <div class="hori">
-                    <p class="point"></p>
-                    <p class="pointChange">+0</p>
-                </div>
-            </div>
+            
             <div id="inputs" class="vert">
                 <div class="hori">
                     <p>東</p>
@@ -96,23 +99,23 @@
             </div>
 
             <div id="eatBtns" class="vert">
-                <div id="dirBtn1" class="hori">
+                <div id="dirBtnGrp1" class="hori">
                     <p>出銃</p>
-                    <button class="pri smallest selBtns dirBtns1">東</button>
+                    <button class="sec smallest selBtns dirBtns1">東</button>
                     <button class="sec smallest selBtns dirBtns1">南</button>
                     <button class="sec smallest selBtns dirBtns1">西</button>
                     <button class="sec smallest selBtns dirBtns1">北</button>
                 </div>
-                <div id="dirBtn2" class="hori">
+                <div id="dirBtnGrp2" class="hori">
                     <p>食糊</p>
-                    <button class="pri smallest selBtns dirBtns2">東</button>
+                    <button class="sec smallest selBtns dirBtns2">東</button>
                     <button class="sec smallest selBtns dirBtns2">南</button>
                     <button class="sec smallest selBtns dirBtns2">西</button>
                     <button class="sec smallest selBtns dirBtns2">北</button>
                 </div>
                 <div class="hori">
                     <p>入番</p>
-                    <input type="number" placeholder="番數" min="3" max="10">
+                    <input id="pointNumber" type="number" placeholder="番數" min="3" max="10">
                 </div>
                 <div class="hori">
                     <button id="eatBtn" class="pri smaller">搞掂</button>
@@ -122,7 +125,7 @@
 
             <div id="alertBox" class="float vert">
                 <h2>提醒</h2>
-                <p id="alert">提醒下你</p>
+                <p id="alert"></p>
                 <button id="alertBtn" class="pri smaller">OK</button>
             </div>
         </div>
