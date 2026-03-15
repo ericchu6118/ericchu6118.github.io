@@ -116,8 +116,10 @@ function changePoint () {
         if (given) {
             pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].textContent = "+" + pointsTable[pointNumber.value];
             pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].style.color = "#006638";
+            pointsNum[givenTo] += pointsTable[pointNumber.value];
             pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenFrom]].textContent = "-" + pointsTable[pointNumber.value];
             pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenFrom]].style.color = "#66002e";
+            pointsNum[givenFrom] -= pointsTable[pointNumber.value];
             [2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)
                 .filter((_, index) => ![givenTo, givenFrom].includes(index))
                 .map((j) => {
