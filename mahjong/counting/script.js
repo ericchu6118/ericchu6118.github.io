@@ -98,8 +98,8 @@ function renderTable () {
     wind.textContent = directionsName[windNum];
     for (let i = 0; i < 4; i++) {
         directions[i].textContent = directionsName[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[i]]
-        players[i].textContent = playerNames[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[i]];
-        points[i].textContent = pointsNum[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[i]];
+        players[i].textContent = playerNames[[2, 3, 1, 0].map((i) => (i + 3 * initNum) % 4)[i]];
+        points[i].textContent = pointsNum[[2, 3, 1, 0].map((i) => (i + 3 * initNum) % 4)[i]];
         document.getElementById("tableColumn").style.transform="translateX("+(playersBox[2].offsetWidth/2-playersBox[1].offsetWidth/2)+"px)"
     }
 }
@@ -114,13 +114,11 @@ function changeTable () {
 function changePoint () {
     if (!(givenFrom == givenTo) && ((givenFrom + given) * (givenTo + 1)) && (pointNumber.checkValidity() && pointNumber.value != "")) {
         if (given) {
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].textContent = "+" + pointsTable[pointNumber.value];
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].style.color = "#006638";
-            pointsNum[givenTo] += pointsTable[pointNumber.value];
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenFrom]].textContent = "-" + pointsTable[pointNumber.value];
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenFrom]].style.color = "#66002e";
-            pointsNum[givenFrom] -= pointsTable[pointNumber.value];
-            [2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenTo]].textContent = "+" + pointsTable[pointNumber.value];
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenTo]].style.color = "#006638";
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenFrom]].textContent = "-" + pointsTable[pointNumber.value];
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenFrom]].style.color = "#66002e";
+            [2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))
                 .filter((_, index) => ![givenTo, givenFrom].includes(index))
                 .map((j) => {
                     pointChange[j].textContent = "+0"
@@ -128,15 +126,13 @@ function changePoint () {
                 })
             renderTable();
         } else {
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].textContent = "+" + pointsTable[pointNumber.value]/2*3;
-            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)[givenTo]].style.color = "#006638";
-            pointsNum[givenTo] += pointsTable[pointNumber.value]/2*3;
-            [2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4)
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenTo]].textContent = "+" + pointsTable[pointNumber.value]/2*3;
+            pointChange[[2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))[givenTo]].style.color = "#006638";
+            [2, 3, 1, 0].map((i) => (i + 3 * (initNum + roundNum)) % 4).map((_, index, array) => array.indexOf(index))
                 .toSpliced(givenTo, 1)
                 .map((j) => {
                     pointChange[j].textContent = "-" + pointsTable[pointNumber.value]/2;
                     pointChange[j].style.color = "#66002e";
-                    pointsNum[j] -= pointsTable[pointNumber.value]/2;
                 });
         }
     }
@@ -255,6 +251,16 @@ eatBtn.addEventListener("click", () => {
     if ((givenFrom == givenTo) || !((givenFrom + given) * (givenTo + 1)) || (!pointNumber.checkValidity() || pointNumber.value == "")) {
         toggleAlert("入清楚邊個出銃、邊個食、同番數");
     } else {
+        if (given) {
+            pointsNum[(givenTo + roundNum) % 4] += pointsTable[pointNumber.value];
+            pointsNum[(givenFrom + roundNum) % 4] -= pointsTable[pointNumber.value];
+        } else {
+            pointsNum[(givenTo + roundNum) % 4] += pointsTable[pointNumber.value]/2*3;
+            pointsNum.toSpliced((givenTo + roundNum) % 4, 1)
+                .map((_, index) => {
+                    pointsNum[index] -= pointsTable[pointNumber.value]/2;
+                });
+        }
         if (givenTo) {
             changeTable();
         }
