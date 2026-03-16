@@ -256,10 +256,11 @@ eatBtn.addEventListener("click", () => {
             pointsNum[(givenFrom + roundNum) % 4] -= pointsTable[pointNumber.value];
         } else {
             pointsNum[(givenTo + roundNum) % 4] += pointsTable[pointNumber.value]/2*3;
-            pointsNum.toSpliced((givenTo + roundNum) % 4, 1)
-                .map((_, index) => {
+            pointsNum.map((_, index) => {
+                if (index != (givenTo + roundNum) % 4) {
                     pointsNum[index] -= pointsTable[pointNumber.value]/2;
-                });
+                }
+            });
         }
         if (givenTo) {
             changeTable();
