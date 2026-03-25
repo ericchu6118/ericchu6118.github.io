@@ -13,6 +13,7 @@ const eatBtns = document.getElementById("eatBtns");
 const selBtns = document.getElementsByClassName("selBtns");
 const givenBtn = document.getElementById("givenBtn");
 const gottenBtn = document.getElementById("gottenBtn");
+const drawBtn = document.getElementById("drawBtn");
 const dirBtnGrp1 = document.getElementById("dirBtnGrp1");
 const dirBtnGrp2 = document.getElementById("dirBtnGrp2");
 const dirBtns1 = document.getElementsByClassName("dirBtns1");
@@ -205,6 +206,12 @@ gottenBtn.addEventListener("click", () => {
     dirBtnGrp1.style.display = "none";
     showSection(2);
 });
+
+drawBtn.addEventListener("click", () => {
+    changeTable();
+    storeData();
+    renderTable();
+})
 
 Array.from(dirBtns1).map((dirBtn, index) => {
     dirBtn.addEventListener("click", () => {
